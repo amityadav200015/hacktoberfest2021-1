@@ -1,0 +1,67 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+struct node
+{
+    int data;
+    struct node* left;
+    struct node* right;
+    node(int val){
+        data=val;
+        left=NULL;
+        right=NULL;
+    }
+};
+/////////////////3 types of transversals in binary tree----(1) prorder(root value print first), (2) inorder(root value is print between left and right)
+//                                                          (3) postorder(root value is print after left and right)
+//refer from apna college video
+// PREORDER TRANSVERSAL
+void preorder(struct node* root){
+    if(root==NULL){                  //base conditon
+        return;
+    }
+    cout<<root->data<<" ";                      //value of root is printed first.
+    preorder(root->left);                      //recursion for left nodes
+    preorder(root->right);                     //recurssion for right nodes
+
+}
+
+//INORDER TRANSVERSAL
+void inorder(struct node* root){
+    if(root==NULL){
+        return;
+    }
+    inorder(root->left);
+    cout<<root->data<<" ";               //value of root is print in between left and right
+    inorder(root->right);
+}
+
+//POSTORDER TRANSVERSAL
+void postorder(struct node* root){
+    if(root==NULL){
+        return;
+    }
+    postorder(root->left);
+    postorder(root->right);
+    cout<<root->data<<" ";
+}
+
+
+
+int main(){
+    struct node* root=new node(1);
+    root->left=new node(2);
+    root->right=new node(3);    
+    root->left->left=new node(4);    
+    root->left->right=new node(5);
+    root->right->left=new node(6);
+    root->right->left=new node(7);
+    preorder(root);
+    cout<<endl;
+    inorder(root);
+    cout<<endl;
+    postorder(root);
+    cout<<endl;
+
+
+}
